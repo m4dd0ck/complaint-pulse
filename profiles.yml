@@ -1,0 +1,11 @@
+complaint_pulse:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: cfpb-dashboard
+      dataset: complaint_pulse
+      threads: 4
+      location: US
+      timeout_seconds: 300
