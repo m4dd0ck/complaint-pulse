@@ -1,0 +1,42 @@
+# complaint-pulse dbt project
+# cfpb consumer complaint analytics with bigquery
+# star schema over 3.4M complaints from the public dataset
+
+name: complaint_pulse
+version: '1.0.0'
+config-version: 2
+
+profile: complaint_pulse
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  complaint_pulse:
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    dimensions:
+      +materialized: table
+      +schema: dimensions
+    facts:
+      +materialized: table
+      +schema: facts
+    marts:
+      +materialized: table
+      +schema: marts
+
+seeds:
+  complaint_pulse:
+    +schema: seeds
