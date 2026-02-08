@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# dbt artifacts
+target/
+dbt_packages/
+logs/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+
+# Evidence.dev
+dashboard/node_modules/
+dashboard/.evidence/
+dashboard/build/
+
+# dbt user config
+.user.yml
+
+# Secrets
+.env

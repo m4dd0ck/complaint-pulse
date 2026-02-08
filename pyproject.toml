@@ -1,0 +1,10 @@
+[project]
+name = "complaint-pulse"
+version = "1.0.0"
+description = "CFPB consumer complaint analytics pipeline using dbt + BigQuery + Evidence.dev"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "dbt-core>=1.8.0",
+    "dbt-bigquery>=1.8.0",
+]
