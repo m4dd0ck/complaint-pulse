@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: stg_complaints
+    description: >
+      Cleaned and standardized complaints from the CFPB public dataset.
+      Normalizes product names, fixes zip codes, renames booleans with is_ prefix,
+      and calculates response time in days.
+    columns:
+      - name: complaint_id
+        description: Unique complaint identifier
+        tests:
+          - unique
+          - not_null
+      - name: date_received
+        description: Date complaint was received by CFPB
+        tests:
+          - not_null
+      - name: product
+        description: Normalized product name (legacy names mapped to current)
+      - name: sub_product
+        description: Product subcategory
+      - name: issue
+        description: Primary issue
+      - name: sub_issue
+        description: Sub-issue detail
+      - name: company
+        description: Company name
+        tests:
+          - not_null
+      - name: state
+        description: Two-letter US state code
+      - name: zip_code
+        description: 5-digit ZIP code (cleaned)
+      - name: submitted_via
+        description: Submission channel
+      - name: company_response
+        description: Company response category
+      - name: is_timely_response
+        description: Whether company responded on time
+      - name: is_disputed
+        description: Whether consumer disputed the response
+      - name: response_days
+        description: Days between CFPB receiving complaint and sending to company
+      - name: narrative
+        description: Consumer complaint narrative text
+      - name: company_public_response
+        description: Company's public response
+      - name: tags
+        description: Consumer demographic tags

@@ -1,0 +1,51 @@
+version: 2
+
+sources:
+  - name: cfpb
+    database: bigquery-public-data
+    schema: cfpb_complaints
+    tables:
+      - name: complaint_database
+        description: >
+          CFPB consumer complaint database. Contains ~3.4M complaints
+          filed against financial companies from 2011 through early 2023.
+        columns:
+          - name: complaint_id
+            description: Unique identifier for each complaint (STRING)
+            tests:
+              - unique
+              - not_null
+          - name: date_received
+            description: Date the complaint was received by the CFPB
+          - name: product
+            description: Financial product type (e.g., Credit card, Mortgage)
+          - name: subproduct
+            description: Specific product subcategory
+          - name: issue
+            description: Primary issue reported by the consumer
+          - name: subissue
+            description: Specific sub-issue
+          - name: consumer_complaint_narrative
+            description: Consumer's description of the complaint (when consent provided)
+          - name: company_public_response
+            description: Company's optional public-facing response
+          - name: company_name
+            description: Company name the complaint was filed against
+          - name: state
+            description: US state where the consumer is located
+          - name: zip_code
+            description: Consumer's ZIP code (first 5 digits)
+          - name: tags
+            description: "Consumer tags: Servicemember, Older American, or null"
+          - name: consumer_consent_provided
+            description: Whether consumer consented to publish their narrative
+          - name: submitted_via
+            description: "Channel used to submit: Web, Referral, Phone, Mail, Fax, Email"
+          - name: date_sent_to_company
+            description: Date the CFPB sent the complaint to the company
+          - name: company_response_to_consumer
+            description: How the company responded (Closed with explanation, etc.)
+          - name: timely_response
+            description: Whether the company responded within the required timeframe (BOOLEAN)
+          - name: consumer_disputed
+            description: Whether the consumer disputed the company's response (BOOLEAN)
