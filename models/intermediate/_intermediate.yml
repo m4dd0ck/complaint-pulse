@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: int_complaints_enriched
+    description: >
+      Enriched complaints with derived flags for relief type, narrative presence,
+      and demographic indicators. Adds date_received_key for dim_date joins.
+    columns:
+      - name: complaint_id
+        description: Unique complaint identifier
+        tests:
+          - unique
+          - not_null
+      - name: is_monetary_relief
+        description: Whether consumer received monetary relief
+      - name: is_non_monetary_relief
+        description: Whether consumer received non-monetary relief
+      - name: is_narrative_provided
+        description: Whether consumer submitted a complaint narrative
+      - name: is_servicemember
+        description: Whether consumer is tagged as a servicemember
+      - name: is_older_american
+        description: Whether consumer is tagged as an older American
+      - name: date_received_key
+        description: Integer date key (YYYYMMDD) for dim_date join

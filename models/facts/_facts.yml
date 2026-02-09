@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: fct_complaints
+    description: >
+      Central fact table with one row per CFPB complaint. Includes dimension keys,
+      all complaint attributes, response metrics, and derived boolean flags.
+    columns:
+      - name: complaint_id
+        description: Unique complaint identifier
+        tests:
+          - unique
+          - not_null
+      - name: date_received_key
+        description: Date key (YYYYMMDD) linking to dim_date
+      - name: product_key
+        description: Surrogate key linking to dim_product
+      - name: state
+        description: Two-letter state code linking to dim_state
+      - name: company
+        description: Company name
+        tests:
+          - not_null
+      - name: response_days
+        description: Days between CFPB receipt and forwarding to company
+      - name: is_timely_response
+        description: Whether company responded within required timeframe
+      - name: is_disputed
+        description: Whether consumer disputed the resolution
