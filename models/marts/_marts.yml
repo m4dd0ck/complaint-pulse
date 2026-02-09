@@ -1,0 +1,79 @@
+version: 2
+
+models:
+  - name: mart_monthly_overview
+    description: >
+      Monthly KPIs: complaint volume, timely response rate, relief rates,
+      dispute rate, and average response time.
+    columns:
+      - name: year_month
+        description: Year-month string (YYYY-MM)
+        tests:
+          - unique
+          - not_null
+      - name: complaint_count
+        description: Total complaints received that month
+      - name: timely_response_pct
+        description: Percentage of complaints with timely company response
+      - name: any_relief_pct
+        description: Percentage resulting in any form of relief
+
+  - name: mart_product_trends
+    description: >
+      Product × month complaint aggregation with simplified category grouping.
+      Used for product trend analysis and drill-down.
+    columns:
+      - name: year_month
+        tests:
+          - not_null
+      - name: product
+        tests:
+          - not_null
+      - name: complaint_count
+        tests:
+          - not_null
+
+  - name: mart_company_scorecard
+    description: >
+      Per-company complaint metrics. Filtered to companies with 100+ complaints
+      to avoid noisy outliers in small samples.
+    columns:
+      - name: company
+        description: Company name
+        tests:
+          - unique
+          - not_null
+      - name: complaint_count
+        description: Total complaints filed against this company
+      - name: timely_response_pct
+        description: Percentage of timely responses
+      - name: dispute_pct
+        description: Percentage of complaints where consumer disputed the resolution
+
+  - name: mart_state_summary
+    description: >
+      State-level metrics with 2020 census population for per-capita rates.
+      Complaints per 100K is the key metric for geographic comparison.
+    columns:
+      - name: state_code
+        description: Two-letter state code
+        tests:
+          - unique
+          - not_null
+      - name: complaints_per_100k
+        description: Complaints per 100,000 residents (2020 census)
+      - name: top_product
+        description: Most common product category in this state
+
+  - name: mart_resolution_analysis
+    description: >
+      Resolution outcomes broken down by submission channel and month.
+      Includes demographic counts for servicemember and older American filters.
+    columns:
+      - name: year_month
+        tests:
+          - not_null
+      - name: company_response
+        description: How the company resolved the complaint
+      - name: submitted_via
+        description: Channel used to submit the complaint
