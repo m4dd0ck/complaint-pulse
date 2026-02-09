@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: >
+      Calendar date dimension from 2011-2024. Generated via date spine
+      so every date is represented even if no complaints were filed.
+    columns:
+      - name: date_key
+        description: Integer key in YYYYMMDD format
+        tests:
+          - unique
+          - not_null
+      - name: date_day
+        description: Calendar date
+      - name: year
+        description: Four-digit year
+      - name: quarter
+        description: Quarter number (1-4)
+      - name: month
+        description: Month number (1-12)
+      - name: month_name
+        description: Full month name
+      - name: year_month
+        description: Year-month string (YYYY-MM)
+      - name: is_weekend
+        description: Whether the date falls on Saturday or Sunday
+
+  - name: dim_product
+    description: >
+      Product dimension with normalized product names and simplified category grouping.
+    columns:
+      - name: product_key
+        description: Surrogate key from product + sub_product
+        tests:
+          - unique
+          - not_null
+      - name: product
+        description: Normalized product name
+      - name: sub_product
+        description: Product subcategory
+      - name: product_category
+        description: Simplified category for high-level charts
+
+  - name: dim_state
+    description: >
+      State dimension with 2020 census population for per-capita analysis.
+    columns:
+      - name: state_code
+        description: Two-letter state code
+        tests:
+          - unique
+          - not_null
+      - name: state_name
+        description: Full state name
+      - name: region
+        description: Census region (Northeast, Midwest, South, West)
+      - name: population
+        description: 2020 census population
