@@ -1,0 +1,5 @@
+name: bigquery
+type: bigquery
+options:
+  project_id: cfpb-dashboard
+  authenticator: gcloud-cli
