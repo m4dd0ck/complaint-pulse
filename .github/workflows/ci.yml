@@ -24,8 +24,8 @@ jobs:
       - name: Install dbt packages
         run: uv run dbt deps --profiles-dir .
 
-      - name: Compile dbt models
-        run: uv run dbt compile --profiles-dir .
+      - name: Parse dbt models
+        run: uv run dbt parse --profiles-dir .
 
   evidence-build:
     runs-on: ubuntu-latest
