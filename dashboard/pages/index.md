@@ -9,10 +9,11 @@ Analysis of 3.4 million consumer financial complaints filed with the Consumer Fi
 ```sql total_complaints
 select
     sum(complaint_count) as total,
-    round(avg(timely_response_pct), 1) as avg_timely_pct,
-    round(avg(any_relief_pct), 1) as avg_relief_pct,
-    round(avg(dispute_pct), 1) as avg_dispute_pct,
-    round(avg(avg_response_days), 1) as avg_response_days
+    -- weight each month's rate by its volume; a plain avg() of percentages overstates quiet months
+    round(sum(timely_response_pct * complaint_count) / sum(complaint_count), 1) as avg_timely_pct,
+    round(sum(any_relief_pct * complaint_count) / sum(complaint_count), 1) as avg_relief_pct,
+    round(sum(dispute_pct * complaint_count) / sum(complaint_count), 1) as avg_dispute_pct,
+    round(sum(cast(avg_response_days as double) * complaint_count) / sum(complaint_count), 1) as avg_response_days
 from bigquery.mart_monthly_overview
 ```
 

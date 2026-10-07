@@ -35,7 +35,7 @@ from bigquery.mart_company_scorecard
     <Column id=company title="Company" />
     <Column id=complaint_count title="Complaints" fmt="num0" />
     <Column id=timely_response_pct title="Timely %" fmt="num1" />
-    <Column id=avg_response_days title="Avg Response Days" fmt="num1" />
+    <Column id=avg_response_days title="Avg Days to Forward" fmt="num1" />
     <Column id=monetary_relief_pct title="Monetary Relief %" fmt="num1" />
     <Column id=dispute_pct title="Dispute %" fmt="num1" />
     <Column id=product_count title="Products" />

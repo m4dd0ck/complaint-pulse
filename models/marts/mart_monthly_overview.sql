@@ -55,7 +55,7 @@ monthly as (
             ) * 100, 2
         ) as dispute_pct,
 
-        -- response time
+        -- days from CFPB receipt to forwarding (the public data has no company response date)
         round(avg(c.response_days), 1) as avg_response_days,
 
         -- narrative stats

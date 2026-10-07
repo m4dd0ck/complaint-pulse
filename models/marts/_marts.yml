@@ -4,7 +4,7 @@ models:
   - name: mart_monthly_overview
     description: >
       Monthly KPIs: complaint volume, timely response rate, relief rates,
-      dispute rate, and average response time.
+      dispute rate, and average days from CFPB receipt to forwarding.
     columns:
       - name: year_month
         description: Year-month string (YYYY-MM)

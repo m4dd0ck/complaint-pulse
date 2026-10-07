@@ -5,7 +5,7 @@ models:
     description: >
       Cleaned and standardized complaints from the CFPB public dataset.
       Normalizes product names, fixes zip codes, renames booleans with is_ prefix,
-      and calculates response time in days.
+      and calculates days from CFPB receipt to forwarding to the company.
     columns:
       - name: complaint_id
         description: Unique complaint identifier
