@@ -1,6 +1,6 @@
 [project]
 name = "complaint-pulse"
-version = "1.0.0"
+version = "1.0.1"
 description = "CFPB consumer complaint analytics pipeline using dbt + BigQuery + Evidence.dev"
 readme = "README.md"
 requires-python = ">=3.11"
