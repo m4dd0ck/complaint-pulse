@@ -4,7 +4,7 @@ title: Consumer Experience
 
 # Consumer Experience
 
-How complaints get resolved, response times, and outcomes across submission channels.
+How complaints get resolved, how long CFPB takes to forward them, and outcomes across submission channels.
 
 ## Resolution Outcomes
 
@@ -68,7 +68,7 @@ order by total_complaints desc
     <Column id=submitted_via title="Channel" />
     <Column id=total_complaints title="Complaints" fmt="num0" />
     <Column id=avg_timely_pct title="Timely %" fmt="num1" />
-    <Column id=avg_response_days title="Avg Response Days" fmt="num1" />
+    <Column id=avg_response_days title="Avg Days to Forward" fmt="num1" />
 </DataTable>
 
 ## Servicemember Complaints

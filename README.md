@@ -46,7 +46,7 @@ dbt + BigQuery pipeline for CFPB consumer complaint data. Star schema over 3.4M 
 2. **Products** - Category filter, trend lines, issue breakdown, comparative table
 3. **Companies** - Searchable scorecard, timely response comparison, volume vs dispute scatter
 4. **Geography** - US choropleth map (per-capita rates), state rankings, regional comparison
-5. **Consumer Experience** - Resolution outcomes, response time trends, channel analysis, demographic breakdowns
+5. **Consumer Experience** - Resolution outcomes, forwarding-time trends, channel analysis, demographic breakdowns
 
 ## Quick Start
 
@@ -92,6 +92,12 @@ make seed           # Load seed data
 make compile        # Compile SQL (no BigQuery credentials needed)
 make dashboard-dev  # Start Evidence dev server
 ```
+
+## Known limitations
+
+- `response_days` is the gap between CFPB receiving a complaint and sending it to the company. The public dataset has no company response date, so this is not how long companies take to answer.
+- `consumer_disputed` is null for every complaint after April 2017 (CFPB stopped collecting it). The staging model coalesces null to false, so dispute rates read near zero from 2017 on; treat them as a 2011-2017 metric.
+- CI parses the dbt project and installs the dashboard's packages. Building either for real needs BigQuery credentials, so CI does not run models or render pages.
 
 ## Data Source
 

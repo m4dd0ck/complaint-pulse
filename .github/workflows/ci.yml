@@ -7,7 +7,8 @@ on:
     branches: [main]
 
 jobs:
-  dbt-compile:
+  # Models target BigQuery; without credentials in CI the most we can do is parse them.
+  dbt-parse:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,7 +28,8 @@ jobs:
       - name: Parse dbt models
         run: uv run dbt parse --profiles-dir .
 
-  evidence-build:
+  # Evidence also needs BigQuery to build pages, so CI only checks the lockfile installs.
+  dashboard-deps:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

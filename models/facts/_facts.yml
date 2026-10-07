@@ -22,7 +22,7 @@ models:
         tests:
           - not_null
       - name: response_days
-        description: Days between CFPB receipt and forwarding to company
+        description: Days between CFPB receiving the complaint and sending it to the company
       - name: is_timely_response
         description: Whether company responded within required timeframe
       - name: is_disputed
