@@ -5,22 +5,26 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   # Models target BigQuery; without credentials in CI the most we can do is parse them.
   dbt-parse:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v4
+        uses: astral-sh/setup-uv@v10.3.0
 
       - name: Set up Python
         run: uv python install 3.12
 
       - name: Install dependencies
-        run: uv sync
+        run: uv sync --locked
 
       - name: Install dbt packages
         run: uv run dbt deps --profiles-dir .
@@ -32,10 +36,10 @@ jobs:
   dashboard-deps:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 20
 
