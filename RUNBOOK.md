@@ -44,8 +44,6 @@ not been done on purpose (the data needs BigQuery either way).
 
 ## Release
 
-Follows `~/developer/hq/CONVENTIONS.md` §Versioning.
-
 1. Bump `version` in `pyproject.toml` (there is no package `__version__`), then `uv lock`
    (CI installs with `--locked`).
 2. Commit `chore: Release vX.Y.Z`, tag `git tag -a vX.Y.Z`, push `main` and the tag.
@@ -64,5 +62,4 @@ uv run dbt deps --profiles-dir .
 uv run dbt parse --profiles-dir .
 make test
 make dashboard-build
-python3 ~/.claude/scripts/doc-check.py --repo .
 ```

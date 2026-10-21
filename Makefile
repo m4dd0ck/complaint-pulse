@@ -1,32 +1,32 @@
 .PHONY: build run test clean deps seed dashboard-dev dashboard-build dashboard-sources
 
-build:
+build: ## Install the Python dependencies and the dbt packages
 	uv sync
 	uv run dbt deps --profiles-dir .
 
-run:
+run: ## dbt run against BigQuery
 	uv run dbt run --profiles-dir .
 
-test:
+test: ## dbt test
 	uv run dbt test --profiles-dir .
 
-seed:
+seed: ## dbt seed
 	uv run dbt seed --profiles-dir .
 
-clean:
+clean: ## Remove target/, dbt_packages/ and logs/
 	rm -rf target/ dbt_packages/ logs/
 
-deps:
+deps: ## Install the dbt packages
 	uv run dbt deps --profiles-dir .
 
-compile:
+compile: ## dbt compile
 	uv run dbt compile --profiles-dir .
 
-dashboard-dev:
+dashboard-dev: ## Evidence dev server, in dashboard/
 	cd dashboard && npm run dev
 
-dashboard-build:
+dashboard-build: ## Strict static build of the dashboard
 	cd dashboard && npm run build:strict
 
-dashboard-sources:
+dashboard-sources: ## Pull the marts from BigQuery into the Evidence cache
 	cd dashboard && npm run sources
