@@ -27,6 +27,9 @@ warehouse and belongs to a build, not to a close.
 2. `make build`, then `uv run dbt debug --profiles-dir .` to prove the connection.
 3. `make seed`, `make run`, `make test`. A failing test is a data change upstream or a broken
    model; read the failing test name before touching SQL.
+4. Every test failing with `Table ... was not found` means the tables are gone, not broken.
+   A BigQuery sandbox project (no billing account) deletes each table 60 days after it is
+   built; the datasets stay, empty. Re-run step 3 to rebuild them.
 
 ## Refresh the dashboard
 
