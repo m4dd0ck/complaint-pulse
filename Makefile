@@ -1,4 +1,4 @@
-.PHONY: build run test clean deps seed dashboard-dev dashboard-build dashboard-sources
+.PHONY: build run test clean deps seed compile dashboard-dev dashboard-build dashboard-sources
 
 build: ## Install the Python dependencies and the dbt packages
 	uv sync
