@@ -39,7 +39,7 @@ models:
       - name: is_timely_response
         description: Whether company responded on time
       - name: is_disputed
-        description: Whether consumer disputed the response
+        description: Whether consumer disputed the response; null where CFPB did not collect it (after April 2017)
       - name: response_days
         description: Days between CFPB receiving complaint and sending to company
       - name: narrative

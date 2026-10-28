@@ -17,6 +17,10 @@ models:
         description: Percentage of complaints with timely company response
       - name: any_relief_pct
         description: Percentage resulting in any form of relief
+      - name: dispute_known_count
+        description: Complaints that month with a recorded dispute value (zero from May 2017 on)
+      - name: dispute_pct
+        description: Percentage of complaints with a recorded dispute value where the consumer disputed; null when none were recorded
 
   - name: mart_product_trends
     description: >
@@ -48,7 +52,7 @@ models:
       - name: timely_response_pct
         description: Percentage of timely responses
       - name: dispute_pct
-        description: Percentage of complaints where consumer disputed the resolution
+        description: Percentage of complaints with a recorded dispute value where the consumer disputed; null when none were recorded
 
   - name: mart_state_summary
     description: >

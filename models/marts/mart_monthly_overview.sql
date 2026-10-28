@@ -47,11 +47,13 @@ monthly as (
             ) * 100, 2
         ) as any_relief_pct,
 
-        -- dispute rate
+        -- dispute rate over the complaints where CFPB recorded a dispute value;
+        -- null from May 2017 on, when none were recorded
+        countif(c.is_disputed is not null) as dispute_known_count,
         round(
             safe_divide(
                 countif(c.is_disputed),
-                count(*)
+                countif(c.is_disputed is not null)
             ) * 100, 2
         ) as dispute_pct,
 

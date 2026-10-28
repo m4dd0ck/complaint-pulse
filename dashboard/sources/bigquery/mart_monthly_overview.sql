@@ -6,6 +6,7 @@ select
     timely_response_pct,
     monetary_relief_pct,
     any_relief_pct,
+    dispute_known_count,
     dispute_pct,
     avg_response_days,
     narratives_count

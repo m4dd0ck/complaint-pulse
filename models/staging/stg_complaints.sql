@@ -46,7 +46,9 @@ cleaned as (
 
         -- source booleans are already BOOL in BigQuery, just rename with is_ prefix
         coalesce(timely_response, false) as is_timely_response,
-        coalesce(consumer_disputed, false) as is_disputed,
+        -- Reason: CFPB stopped collecting consumer_disputed after April 2017, so null means
+        -- "not asked", not "did not dispute"; keep it null so the marts can leave it out
+        consumer_disputed as is_disputed,
 
         -- calculate how long CFPB took to forward the complaint
         date_diff(date_sent_to_company, date_received, day) as response_days

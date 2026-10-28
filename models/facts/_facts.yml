@@ -26,4 +26,4 @@ models:
       - name: is_timely_response
         description: Whether company responded within required timeframe
       - name: is_disputed
-        description: Whether consumer disputed the resolution
+        description: Whether consumer disputed the resolution; null where CFPB did not collect it (after April 2017)

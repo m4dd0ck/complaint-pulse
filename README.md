@@ -122,7 +122,7 @@ The three `dashboard-*` targets run the npm scripts in `dashboard/`:
 ### What the data cannot say
 
 - `response_days` is the gap between CFPB receiving a complaint and sending it to the company. The public dataset has no company response date, so this is not how long companies take to answer.
-- `consumer_disputed` is null for every complaint after April 2017 (CFPB stopped collecting it). The staging model coalesces null to false, so dispute rates read near zero from 2017 on; treat them as a 2011-2017 metric.
+- `consumer_disputed` is null for every complaint after April 2017 (CFPB stopped collecting it). The staging model keeps the null, and every `dispute_pct` divides disputes by the complaints that have a recorded value, so months, products, companies and states with no recorded value read null rather than 0%. The Overview's average dispute rate is weighted by `dispute_known_count`, so it describes 2011 to April 2017 only.
 
 ## Layout
 

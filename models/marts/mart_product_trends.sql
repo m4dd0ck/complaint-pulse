@@ -48,7 +48,7 @@ product_monthly as (
         round(
             safe_divide(
                 countif(c.is_disputed),
-                count(*)
+                countif(c.is_disputed is not null)
             ) * 100, 2
         ) as dispute_pct
 

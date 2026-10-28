@@ -12,7 +12,8 @@ select
     -- weight each month's rate by its volume; a plain avg() of percentages overstates quiet months
     round(sum(timely_response_pct * complaint_count) / sum(complaint_count), 1) as avg_timely_pct,
     round(sum(any_relief_pct * complaint_count) / sum(complaint_count), 1) as avg_relief_pct,
-    round(sum(dispute_pct * complaint_count) / sum(complaint_count), 1) as avg_dispute_pct,
+    -- dispute_pct is null once CFPB stopped recording disputes, so weight by the complaints that have a value
+    round(sum(dispute_pct * dispute_known_count) / sum(dispute_known_count), 1) as avg_dispute_pct,
     round(sum(cast(avg_response_days as double) * complaint_count) / sum(complaint_count), 1) as avg_response_days
 from bigquery.mart_monthly_overview
 ```

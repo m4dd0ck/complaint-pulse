@@ -46,7 +46,7 @@ company_stats as (
         round(
             safe_divide(
                 countif(is_disputed),
-                count(*)
+                countif(is_disputed is not null)
             ) * 100, 2
         ) as dispute_pct,
 
