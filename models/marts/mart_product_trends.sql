@@ -29,8 +29,8 @@ product_monthly as (
 
         count(*) as complaint_count,
 
-        -- top issues for this product-month
-        -- useful for drilling into what's driving volume
+        -- response, relief and dispute rates for this product-month,
+        -- the same definitions as mart_monthly_overview
         round(
             safe_divide(
                 countif(c.is_timely_response),
